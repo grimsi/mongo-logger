@@ -23,7 +23,8 @@ function MongoLogger(srcComponent) {
     };
 
     var now = function () {
-        var dateNow = new Date().toISOString();
+        var tzOffset = (new Date()).getTimezoneOffset() * 60000;
+        var dateNow = (new Date(Date.now() - tzOffset)).toISOString()
         dateNow = dateNow.replace("T", " ").slice(0, -5);
         return dateNow;
     };
